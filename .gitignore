@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+node_modules/
+dist/
+backend/storage/
+backend/vector_index/
+backend/generated_reports/
+*.db
+.pytest_cache/

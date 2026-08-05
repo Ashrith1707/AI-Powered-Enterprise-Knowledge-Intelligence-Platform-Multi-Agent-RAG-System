@@ -1,0 +1,30 @@
+{
+  "embedder": "local-hashing-v1",
+  "corpus_docs": 14,
+  "queries": 14,
+  "k": 4,
+  "baseline_dense_only": {
+    "precision@4": 0.2143,
+    "recall@4": 0.8571,
+    "mrr": 0.8357,
+    "ndcg@4": 0.8308,
+    "context_relevance": 0.1769,
+    "mean_latency_ms": 0.05
+  },
+  "bm25_only": {
+    "precision@4": 0.2321,
+    "recall@4": 0.9286,
+    "mrr": 0.9048,
+    "ndcg@4": 0.9022,
+    "context_relevance": 0.202,
+    "mean_latency_ms": 0.06
+  },
+  "hybrid_rrf": {
+    "precision@4": 0.2321,
+    "recall@4": 0.9286,
+    "mrr": 0.8899,
+    "ndcg@4": 0.8929,
+    "context_relevance": 0.202,
+    "mean_latency_ms": 2.28
+  }
+}

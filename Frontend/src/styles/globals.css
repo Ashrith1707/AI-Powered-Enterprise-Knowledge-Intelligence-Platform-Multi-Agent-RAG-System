@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: ThemeContext toggles .dark on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Design tokens ---------- */
+:root {
+  --background: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --border-c: #e4e7ec;
+  --ink: #101828;
+  --ink-secondary: #475467;
+  --muted: #667085;
+  --primary: #2a78d6;
+  --primary-hover: #1c5cab;
+  --primary-soft: #e8f1fc;
+  --ring: rgba(42, 120, 214, 0.35);
+  --success: #0ca30c;
+  --warning: #b45309;
+  --danger: #d03b3b;
+  --danger-soft: #fdecec;
+
+  /* charts (validated, light surface) */
+  --chart-1: #2a78d6;
+  --chart-2: #1baf7a;
+  --chart-3: #eda100;
+  --chart-4: #008300;
+  --chart-grid: #e1e0d9;
+  --chart-axis: #898781;
+}
+
+.dark {
+  --background: #0d0f14;
+  --surface: #151922;
+  --surface-2: #1c2230;
+  --border-c: #262d3d;
+  --ink: #e7ebf2;
+  --ink-secondary: #aeb7c7;
+  --muted: #7c8698;
+  --primary: #3987e5;
+  --primary-hover: #5598e7;
+  --primary-soft: #16233a;
+  --ring: rgba(57, 135, 229, 0.4);
+  --success: #22b022;
+  --warning: #eda100;
+  --danger: #e66767;
+  --danger-soft: #331a1a;
+
+  /* charts (validated, dark surface) */
+  --chart-1: #3987e5;
+  --chart-2: #199e70;
+  --chart-3: #c98500;
+  --chart-4: #008300;
+  --chart-grid: #2c2c2a;
+  --chart-axis: #898781;
+}
+
+/* Map tokens into Tailwind utilities: bg-surface, text-ink, border-edge… */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-edge: var(--border-c);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-secondary);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius-card: 0.875rem;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  @apply bg-background text-ink font-sans antialiased;
+  font-size: 14px;
+}
+
+/* Recessive scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border-c); border-radius: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Focus ring */
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* Recharts chrome should follow theme */
+.recharts-cartesian-grid line { stroke: var(--chart-grid); }
+.recharts-text { fill: var(--chart-axis); font-size: 11px; }
+
+/* Markdown rendering inside chat answers */
+.md { line-height: 1.65; }
+.md > * + * { margin-top: 0.6em; }
+.md ul { list-style: disc; padding-left: 1.25em; }
+.md ol { list-style: decimal; padding-left: 1.25em; }
+.md li + li { margin-top: 0.2em; }
+.md strong { font-weight: 600; color: var(--ink); }
+.md a { color: var(--primary); text-decoration: underline; }
+.md h1, .md h2, .md h3 { font-weight: 600; color: var(--ink); margin-top: 0.9em; }
+.md h1 { font-size: 1.1em; } .md h2 { font-size: 1.05em; } .md h3 { font-size: 1em; }
+.md code {
+  background: var(--surface-2); border: 1px solid var(--border-c);
+  border-radius: 4px; padding: 0.1em 0.35em; font-size: 0.85em;
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+}
+.md pre {
+  background: var(--surface-2); border: 1px solid var(--border-c);
+  border-radius: 10px; padding: 12px 14px; overflow-x: auto;
+}
+.md pre code { background: none; border: none; padding: 0; }
+.md blockquote {
+  border-left: 3px solid var(--primary); padding-left: 12px; color: var(--ink-secondary);
+}
+.md table { width: 100%; border-collapse: collapse; font-size: 0.9em; display: block; overflow-x: auto; }
+.md th, .md td { border: 1px solid var(--border-c); padding: 6px 10px; text-align: left; }
+.md th { background: var(--surface-2); font-weight: 600; }

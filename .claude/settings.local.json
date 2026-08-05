@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python --version)",
+      "PowerShell(py -0p 2>$null)",
+      "Bash(python -m venv venv)",
+      "Bash(./venv/Scripts/python -m pip install -r requirements.txt -q)",
+      "Bash(./venv/Scripts/python -c \"from app.core.database import init_db; init_db\\(\\)\")",
+      "Skill(dataviz)",
+      "Skill(dataviz:*)",
+      "Bash(npm install *)",
+      "Bash(node scripts/validate_palette.js \"#2a78d6,#1baf7a,#eda100,#008300\" --mode light --surface \"#ffffff\")",
+      "Bash(node scripts/validate_palette.js \"#3987e5,#199e70,#c98500,#008300\" --mode dark --surface \"#151922\")",
+      "Bash(curl -s http://localhost:5173/api/documents/2)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); m=d['doc_metadata']; print\\('category:', d['category'], '| title:', m['title'], '| keywords:', m['keywords'][:4], '| entities:', m['entities']['amounts'], m['entities']['emails']\\)\")",
+      "Bash(curl -s http://localhost:5173/api/documents/2/pages)",
+      "Bash(curl -s -o /dev/null -w \"delete: %{http_code}\\\\n\" -X DELETE http://localhost:5173/api/documents/2)",
+      "Bash(curl -s -m 3 http://localhost:8000/api/health)",
+      "Bash(curl -s -X POST -H 'Content-Type: application/json' -d '{\"question\":\"What services does Infosys provide?\"}' http://localhost:4173/api/ask)",
+      "Bash(curl -s -X POST -H 'Content-Type: application/json' -d '{\"query\":\"infosys\",\"top_k\":3}' http://localhost:4173/api/search)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('hits:', len\\(d['hits']\\), '| top:', d['hits'][0]['document_name'] if d['hits'] else None, '| score:', round\\(d['hits'][0]['score'],3\\) if d['hits'] else None\\)\")",
+      "Bash(./venv/Scripts/python -m pip install -q PyJWT==2.10.1 bcrypt==4.2.1)",
+      "Bash(./venv/Scripts/python -m pip install -q email-validator==2.2.0)",
+      "Bash(./venv/Scripts/python -m pytest -q)",
+      "Bash(taskkill //F //FI \"IMAGENAME eq python.exe\")",
+      "Bash(DATABASE_URL=\"sqlite:///C:/Users/ashri/OneDrive/Desktop/Major_P!/backend/knowledge.db\" GEMINI_API_KEY=\"\" SECRET_KEY=\"local-dev-secret-0451\" ./venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000)",
+      "Bash(curl -s http://localhost:8000/api/health)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8000/api/documents)",
+      "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"email\":\"krutha@corp.com\",\"password\":\"MyPassword1!\",\"full_name\":\"Krutha R\"}' http://localhost:8000/api/auth/register)",
+      "Bash(python -c \"import json; d=json.load\\(open\\('/tmp/reg.json'\\)\\); print\\('role:', d['user']['role'], '| has tokens:', bool\\(d['access_token'] and d['refresh_token']\\)\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(./venv/Scripts/python -c ' *)",
+      "Bash(GEMINI_API_KEY=\"\" ./venv/Scripts/python -m benchmarks.run_benchmark)",
+      "Bash(npm run *)",
+      "Read(//c/Users/ashri/OneDrive/Desktop/**)",
+      "Bash(DATABASE_URL=\"sqlite:///C:/Users/ashri/OneDrive/Desktop/Major_P!/backend/knowledge.db\" SECRET_KEY=\"local-dev-secret-0451\" ./venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000)",
+      "Bash(python -m json.tool)",
+      "Bash(DATABASE_URL=\"sqlite://\" ./venv/Scripts/python -m scripts.check_gemini)"
+    ]
+  }
+}
