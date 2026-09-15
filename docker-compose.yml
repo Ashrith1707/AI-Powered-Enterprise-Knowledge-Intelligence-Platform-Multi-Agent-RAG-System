@@ -1,0 +1,66 @@
+# ============================================================
+# KnowledgeIQ — Production Docker Compose
+#   PostgreSQL 16 + FastAPI backend + Nginx-served React frontend
+#
+# Production NEVER uses SQLite (the backend refuses to start with
+# APP_ENV=production and a sqlite DATABASE_URL).
+#
+# Usage:
+#   cp .env.example .env   # then set SECRET_KEY + GEMINI_API_KEY
+#   docker compose up --build
+#   → http://localhost:8080
+# ============================================================
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-knowledgeiq}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledgeiq}
+      POSTGRES_DB: ${POSTGRES_DB:-knowledgeiq}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-knowledgeiq} -d ${POSTGRES_DB:-knowledgeiq}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-knowledgeiq}:${POSTGRES_PASSWORD:-knowledgeiq}@db:5432/${POSTGRES_DB:-knowledgeiq}
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY must be set in .env for production}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      GEMINI_EMBEDDING_MODEL: ${GEMINI_EMBEDDING_MODEL:-gemini-embedding-001}
+      EMBEDDING_DIMENSIONS: ${EMBEDDING_DIMENSIONS:-768}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
+      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-25}
+      TESSERACT_CMD: /usr/bin/tesseract
+    volumes:
+      - uploads:/srv/knowledgeiq/data/uploads
+      - vectors:/srv/knowledgeiq/data/vectors
+      - evaldata:/srv/knowledgeiq/data/evaluation/results
+    expose:
+      - "8001"
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+
+volumes:
+  pgdata:
+  uploads:
+  vectors:
+  evaldata:

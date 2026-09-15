@@ -1,0 +1,70 @@
+{
+  "name": "knowledgeiq-golden-v1",
+  "description": "Labeled Q&A set over the synthetic enterprise corpus in data/evaluation/corpus. Relevance labels are defined per source document plus evidence keywords; chunk-level ground truth is derived by matching labeled evidence keywords against ingested chunks (see app/evaluation/dataset.py).",
+  "corpus_dir": "data/evaluation/corpus",
+  "corpus": [
+    "safety_manual.txt",
+    "hr_leave_policy.txt",
+    "it_security_policy.txt",
+    "vendor_payment_terms.txt"
+  ],
+  "queries": [
+    {
+      "id": "q1",
+      "question": "What are the safety requirements for machine maintenance?",
+      "relevant_files": ["safety_manual.txt"],
+      "evidence_keywords": ["lockout", "tagout", "maintenance", "energy sources"],
+      "ideal_points": ["lockout-tagout before servicing", "isolate energy sources", "PPE requirements", "authorized personnel only"]
+    },
+    {
+      "id": "q2",
+      "question": "How many days of paid annual leave are full-time employees entitled to?",
+      "relevant_files": ["hr_leave_policy.txt"],
+      "evidence_keywords": ["annual leave", "24 days"],
+      "ideal_points": ["24 days per calendar year"]
+    },
+    {
+      "id": "q3",
+      "question": "What are the password and multi-factor authentication requirements?",
+      "relevant_files": ["it_security_policy.txt"],
+      "evidence_keywords": ["password", "14 characters", "multi-factor"],
+      "ideal_points": ["at least 14 characters", "expire every 90 days", "MFA mandatory for VPN, email, admin consoles"]
+    },
+    {
+      "id": "q4",
+      "question": "What are the standard payment terms for vendors?",
+      "relevant_files": ["vendor_payment_terms.txt"],
+      "evidence_keywords": ["net-30", "payment terms"],
+      "ideal_points": ["net-30 days from valid invoice", "net-45 possible for strategic vendors with CFO approval"]
+    },
+    {
+      "id": "q5",
+      "question": "Who is authorized to perform machine maintenance and open machine guards?",
+      "relevant_files": ["safety_manual.txt"],
+      "evidence_keywords": ["authorized", "certification", "machine guards"],
+      "ideal_points": ["Level-2 Maintenance Certification required", "contractors must be escorted"]
+    },
+    {
+      "id": "q6",
+      "question": "How should a suspected security incident be reported and within what time?",
+      "relevant_files": ["it_security_policy.txt"],
+      "evidence_keywords": ["incident", "24 hours", "security operations centre"],
+      "ideal_points": ["report to SOC within 24 hours", "critical incidents escalated to CISO within 4 hours"]
+    },
+    {
+      "id": "q7",
+      "question": "What is the maximum number of annual leave days that can be carried over?",
+      "relevant_files": ["hr_leave_policy.txt"],
+      "evidence_keywords": ["carry over", "maximum of 5"],
+      "ideal_points": ["maximum of 5 unused days carried over", "additional balance lapses on 31 December"]
+    },
+    {
+      "id": "q8",
+      "question": "What is the company's rocket launch checklist procedure?",
+      "relevant_files": [],
+      "evidence_keywords": [],
+      "expect_insufficient_evidence": true,
+      "ideal_points": ["should refuse: no document covers rocket launches"]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; }
+  body {
+    @apply bg-slate-950 text-slate-200 antialiased;
+  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { @apply bg-slate-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-700 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-600; }
+}
+
+@layer components {
+  .card {
+    @apply bg-slate-900 border border-slate-800 rounded-xl;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2
+           text-sm font-semibold text-white transition hover:bg-brand-500
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700
+           bg-slate-800/60 px-4 py-2 text-sm font-medium text-slate-200 transition
+           hover:bg-slate-700/60 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-red-900/60
+           bg-red-950/40 px-3 py-1.5 text-xs font-medium text-red-300 transition
+           hover:bg-red-900/40 disabled:opacity-50;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm
+           text-slate-100 placeholder-slate-500 outline-none transition
+           focus:border-brand-500 focus:ring-1 focus:ring-brand-500;
+  }
+  .label {
+    @apply block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1.5;
+  }
+  .nav-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium
+           text-slate-400 transition hover:bg-slate-800/70 hover:text-slate-100;
+  }
+  .nav-link-active {
+    @apply bg-brand-600/15 text-brand-300 border border-brand-600/30 hover:bg-brand-600/20;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+}
+
+/* SSE streaming caret */
+.streaming-caret::after {
+  content: '▍';
+  @apply text-brand-400 animate-pulse;
+}

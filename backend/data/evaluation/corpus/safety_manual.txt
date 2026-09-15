@@ -1,0 +1,27 @@
+Industrial Machine Safety Manual
+Document ID: SOP-4021 | Version 3.2 | Department: Operations | Category: Manual
+Prepared by: Plant Safety Committee
+
+1. Lockout-Tagout Procedure
+All maintenance personnel must perform lockout-tagout (LOTO) before servicing any machine.
+The authorized technician must isolate all energy sources, apply a personal padlock, and attach
+a tag showing the technician name and date. Maintenance work on energized equipment is strictly
+prohibited. Group lockout requires a secondary verification by the shift supervisor.
+
+2. Personal Protective Equipment
+Safety glasses, steel-toe boots, and cut-resistant gloves are mandatory on the production floor.
+Hearing protection is required in zones where noise exceeds 85 decibels. Welding operations
+require a full face shield and flame-resistant clothing.
+
+3. Authorized Maintenance Personnel
+Only technicians who completed the Level-2 Maintenance Certification may open machine guards.
+Contractors must be escorted by a certified employee and registered at the front desk. The
+maintenance supervisor approves all non-routine repairs.
+
+4. Emergency Stop
+Emergency stop buttons are located at every workstation and must be tested weekly. After an
+emergency stop event, the machine may only be restarted after a supervisor inspection.
+
+5. Inspection Schedule
+Machines undergo a documented safety inspection every 90 days. Inspection records are retained
+for five years and audited annually by the safety committee.

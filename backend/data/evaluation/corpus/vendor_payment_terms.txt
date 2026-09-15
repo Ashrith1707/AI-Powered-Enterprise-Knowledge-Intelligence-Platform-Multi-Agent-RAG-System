@@ -1,0 +1,21 @@
+Vendor Contract and Payment Guide
+Document ID: FIN-3300 | Version 1.8 | Department: Finance | Category: Contract
+Owner: Accounts Payable
+
+1. Standard Payment Terms
+The standard payment terms for all vendors are net-30 days from receipt of a valid invoice.
+Strategic vendors with an annual spend above one million dollars may negotiate net-45 terms
+with CFO approval. Late payment disputes must be raised within 10 days of the due date.
+
+2. Vendor Onboarding
+New vendors must submit tax registration, bank details, and a signed code of conduct before
+the first purchase order is issued. The procurement team completes vendor due diligence
+within 15 working days.
+
+3. Purchase Orders
+A purchase order is mandatory for any spend above 500 dollars. Invoices without a matching
+purchase order are rejected automatically by the accounts payable system.
+
+4. Invoice Requirements
+Invoices must quote the purchase order number, vendor tax ID, and bank reference. Electronic
+invoicing through the vendor portal is preferred over email submissions.

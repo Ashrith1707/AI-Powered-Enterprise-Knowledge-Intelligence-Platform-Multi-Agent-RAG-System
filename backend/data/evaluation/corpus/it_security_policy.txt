@@ -1,0 +1,26 @@
+Information Security Policy
+Document ID: POL-7701 | Version 2.4 | Department: IT Security | Category: Policy
+Approved by: Chief Information Security Officer
+
+1. Password Standard
+All corporate account passwords must be at least 14 characters long and must not contain the
+user name. Passwords expire every 90 days. Multi-factor authentication (MFA) is mandatory for
+VPN, email, and all administrative consoles. Password sharing is prohibited and is treated as
+a disciplinary offence.
+
+2. Device Security
+Full-disk encryption is required on all laptops and mobile devices. Screen lock activates after
+10 minutes of inactivity. Personal devices may access email only through the managed container.
+
+3. Security Incident Reporting
+Any suspected security incident must be reported to the security operations centre within 24
+hours using the incident portal or the hotline. Critical incidents involving customer data must
+be escalated to the CISO within 4 hours. Incident reports are reviewed weekly.
+
+4. Phishing Awareness
+All employees complete phishing awareness training every quarter. Users who fail two simulated
+phishing tests must repeat the training module.
+
+5. Access Control
+Access to production systems follows the principle of least privilege. Access reviews are
+performed quarterly by system owners.
