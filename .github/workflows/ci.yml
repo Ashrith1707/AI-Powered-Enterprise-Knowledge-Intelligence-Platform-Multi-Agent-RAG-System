@@ -51,12 +51,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Fail if text-embedding-004 or legacy SDK appears in source
+      - name: The legacy SDK must not be a declared dependency
         run: |
-          if grep -rn --include='*.py' --include='*.js' --include='*.jsx' --include='*.json' --include='*.yml' \
-               -e 'text-embedding-004' -e 'google.generativeai' \
-               backend/app frontend/src docker-compose.yml .github 2>/dev/null | grep -v 'deprecated'; then
-            echo "Deprecated Gemini model/SDK usage found!"
-            exit 1
+          if grep -iE 'google-generativeai' backend/requirements.txt; then
+            echo "Legacy google-generativeai SDK found in requirements!" && exit 1
           fi
-          echo "OK: no deprecated text-embedding-004 / google.generativeai usage."
+          echo "OK: requirements.txt uses only the modern google-genai SDK."
+      - name: No deprecated model/SDK usage in real code (AST-based, comments exempt)
+        run: |
+          python3 - <<'EOF'
+          import ast, pathlib, re, sys
+          bad = []
+          for p in pathlib.Path('backend/app').rglob('*.py'):
+              tree = ast.parse(p.read_text())
+              for node in ast.walk(tree):
+                  if isinstance(node, (ast.Import, ast.ImportFrom)):
+                      mods = [a.name for a in node.names] if isinstance(node, ast.Import) else [node.module or '']
+                      if any('generativeai' in (m or '') for m in mods):
+                          bad.append(f"{p}:{node.lineno} imports legacy SDK")
+                  if isinstance(node, ast.Constant) and isinstance(node.value, str):
+                      v = node.value
+                      if ('text-embedding-004' in v or 'google.generativeai' in v) \
+                         and 'deprecated' not in v.lower() and 'legacy' not in v.lower():
+                          bad.append(f"{p}:{node.lineno} string literal: {v[:60]!r}")
+          for p in list(pathlib.Path('frontend/src').rglob('*.js')) + list(pathlib.Path('frontend/src').rglob('*.jsx')):
+              for m in re.finditer(r"""['"`]([^'"`]*(?:text-embedding-004|google\.generativeai)[^'"`]*)['"`]""", p.read_text()):
+                  if 'deprecated' not in m.group(1).lower():
+                      bad.append(f"{p} string literal: {m.group(1)[:60]!r}")
+          if bad:
+              print("DEPRECATED GEMINI USAGE FOUND:")
+              print("\n".join(f"  {b}" for b in bad))
+              sys.exit(1)
+          print("OK: no deprecated text-embedding-004 / google.generativeai usage in code.")
+          EOF

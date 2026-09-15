@@ -77,8 +77,9 @@ export default function Settings() {
                 <b>Offline mock mode.</b> Answers are extractive (quoted directly from evidence) and embeddings are
                 lexical hashes. Set <code className="rounded bg-black/40 px-1 font-mono">GEMINI_API_KEY</code> in
                 <code className="rounded bg-black/40 px-1 font-mono">backend/.env</code> and restart the API for full
-                generative answers and semantic embeddings (<code className="font-mono">gemini-embedding-001</code> —
-                the deprecated <code className="font-mono">text-embedding-004</code> is never used).
+                generative answers and semantic embeddings (the modern
+                <code className="font-mono"> gemini-embedding-001</code> model — deprecated legacy
+                embedding models are never used).
               </div>
             )}
           </div>
