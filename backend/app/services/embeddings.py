@@ -91,10 +91,9 @@ class GeminiEmbeddingProvider(EmbeddingProvider):
                         model=self._model,
                         contents=batch,
                         config=types.EmbedContentConfig(
-                            task_type="RETRIEVAL_DOCUMENT",
-                            output_dimensionality=self.dimensions,
-                            auto_truncate=True,
-                        ),
+                        task_type="RETRIEVAL_DOCUMENT",
+                        output_dimensionality=self.dimensions,
+                    ),
                     )
                     latency = (time.perf_counter() - started) * 1000
                     embeddings = getattr(result, "embeddings", None) or []
